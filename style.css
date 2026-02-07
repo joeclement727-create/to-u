@@ -1,0 +1,135 @@
+/* ------------------------- */
+/*        Body & Background  */
+/* ------------------------- */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #800020; /* burgundy */
+  overflow-y: auto; /* allows scrolling */
+  min-height: 100vh;
+}
+
+/* ------------------------- */
+/*        Background Vines   */
+/* ------------------------- */
+#background {
+  position: fixed;
+  inset: 0;
+  z-index: -1; /* behind everything */
+}
+
+.vines {
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  background-image: url("https://raw.githubusercontent.com/twitter/twemoji/master/assets/72x72/1f33f.png");
+  background-repeat: repeat-y;
+  background-size: 60px;
+  opacity: 0.9;
+}
+
+.vines.left {
+  left: 0;
+}
+
+.vines.right {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+/* Animate vines slowly upward */
+@keyframes vineGrow {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-30%); }
+}
+
+.vines {
+  animation: vineGrow 20s linear infinite;
+}
+
+/* ------------------------- */
+/*      Game Container       */
+/* ------------------------- */
+#game {
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 2; /* above vines */
+  max-width: 600px; /* optional: centers content nicely */
+  margin: 0 auto;
+}
+
+/* ------------------------- */
+/*      Character Image      */
+/* ------------------------- */
+#character {
+  width: 140px; /* small enough to show vines */
+  margin: 0 auto;
+  display: block;
+  z-index: 2;
+  animation: floatHeart 3s ease-in-out infinite; /* subtle floating effect */
+}
+
+@keyframes floatHeart {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ------------------------- */
+/*          Paper Box        */
+/* ------------------------- */
+#paper {
+  background: linear-gradient(145deg, #fff0f5, #ffe4e1); /* soft gradient */
+  margin: 20px auto;
+  padding: 22px 20px;
+  width: 320px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  color: #330000;
+  font-size: 16px;
+  line-height: 1.6;
+  position: relative;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+/* Cute tape corners */
+#paper::before,
+#paper::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 15px;
+  background: #ffb6c1;
+  top: -7px;
+  border-radius: 3px;
+  transform: rotate(-15deg);
+}
+
+#paper::after {
+  right: 0;
+  left: auto;
+  transform: rotate(15deg);
+}
+
+/* ------------------------- */
+/*         Buttons           */
+/* ------------------------- */
+#choices button {
+  margin: 8px;
+  padding: 10px 22px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #ffb6c1;
+  color: #330000;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  transition: 0.2s;
+}
+
+#choices button:hover {
+  background: #ff8fa1;
+}
